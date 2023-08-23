@@ -1,0 +1,85 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.trending-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Carousel item */
+.slick-slide {
+  padding: 10px;
+}
+
+.slick-list {
+  max-height: 27em;
+}
+
+/* Carousel item content (image and title) */
+.slick-slide div {
+  text-align: center;
+}
+
+.slick-slide img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Customize the arrow buttons */
+.slick-prev:before,
+.slick-next:before {
+  color: #007bff;
+}
+
+/* Customize the dots (if you want to use them) */
+.slick-dots {
+  text-align: center;
+  list-style: none;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+  border-radius: 50%;
+  background: #007bff;
+  border: 2px solid transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Active dot */
+.slick-dots li.slick-active button {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+/* Remove margin on body and html for mobile devices */
+@media (max-width: 768px) {
+  .slick-list {
+    max-height: 15em;
+  }
+
+  .trending-container {
+    width: 340px;
+  }
+}
+
+.slick-arrow {
+  background-color: #acb4bd !important;
+  border-radius: 20px;
+}

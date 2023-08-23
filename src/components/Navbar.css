@@ -14,13 +14,11 @@
   align-items: center;
   justify-content: flex-end;
   flex: 1;
-
-  /* text-align: left; */
 }
 
 /* Styles for the title text */
 .navbar-title {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .navbar-title:hover {
@@ -29,7 +27,7 @@
 
 /* Styles for the search bar in the middle */
 .navbar-middle {
-  flex: 2;
+  flex: 3;
   text-align: center;
 }
 
@@ -42,6 +40,9 @@
 
 /* Styles for the button on the right */
 .navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   flex: 1;
   /* text-align: right; */
 }
@@ -56,6 +57,10 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+}
+
+.navbar-logo {
+  height: 50px;
 }
 
 @media (max-width: 768px) {
