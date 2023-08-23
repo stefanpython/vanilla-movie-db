@@ -13,46 +13,69 @@ function Trending() {
     fetchTvSeries();
   }, []);
 
+  // Define opitons parameter for fetch
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
+    },
+  };
+
+  // FETCH LATEST MOVIES
   const fetchTrending = () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
-      },
-    };
+    // Fetch more pages at once using promise.all
+    const totalPages = 3;
+    const requests = [];
 
-    fetch(
-      "https://api.themoviedb.org/3/trending/all/week?language=en-US",
-      options
-    )
-      .then((response) => response.json())
-      .then((data) => setTrending(data.results))
+    for (let page = 1; page <= totalPages; page++) {
+      requests.push(
+        fetch(
+          `https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => data.results)
+      );
+    }
+
+    // Use Promise.all to wait for all requests to complete
+    Promise.all(requests)
+      .then((results) => {
+        // Combine the results from all pages into a single array
+        const combinedResults = results.flat();
+        setTrending(combinedResults);
+      })
       .catch((err) => console.error(err));
   };
 
-  // Fetch the latest TV Series
+  // FETCH LATEST TV SHOWS
   const fetchTvSeries = () => {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
-      },
-    };
+    // Fetch more pages at once using promise.all
+    const totalPages = 3;
+    const requests = [];
 
-    fetch(
-      "https://api.themoviedb.org/3/trending/tv/week?language=en-US",
-      options
-    )
-      .then((response) => response.json())
-      .then((data) => setTvSeries(data.results))
+    for (let page = 1; page <= totalPages; page++) {
+      requests.push(
+        fetch(
+          `https://api.themoviedb.org/3/trending/tv/week?language=en-US&page=${page}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => data.results)
+      );
+    }
+
+    // Use Promise.all to wait for all requests to complete
+    Promise.all(requests)
+      .then((results) => {
+        // Combine the results from all pages into a single array
+        const combinedResults = results.flat();
+        setTvSeries(combinedResults);
+      })
       .catch((err) => console.error(err));
   };
-
-  console.log(tvSeries);
 
   // Settings for the react-slick carousel
   const settings = {
