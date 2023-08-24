@@ -5,7 +5,8 @@ html {
 }
 
 .trending-container,
-.shows-container {
+.shows-container,
+.upcoming-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
@@ -39,7 +40,8 @@ html {
   }
 
   .trending-container,
-  .shows-container {
+  .shows-container,
+  .upcoming-container {
     max-width: 340px;
   }
 

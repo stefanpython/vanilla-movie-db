@@ -7,10 +7,13 @@ import "slick-carousel/slick/slick-theme.css";
 function Trending() {
   const [trending, setTrending] = useState([]);
   const [tvSeries, setTvSeries] = useState([]);
+  const [upcoming, setUpcoming] = useState([]);
 
   useEffect(() => {
     fetchTrending();
     fetchTvSeries();
+    fetchUpcoming();
+    // eslint-disable-next-line
   }, []);
 
   // Define opitons parameter for fetch
@@ -77,10 +80,29 @@ function Trending() {
       .catch((err) => console.error(err));
   };
 
+  //FETCH POPULATE MOVIES AND TV SHOWS
+  const fetchUpcoming = () => {
+    const requests = [];
+
+    // fetch popular movies
+    requests.push(
+      fetch(
+        `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
+        options
+      )
+        .then((response) => response.json())
+        .then((data) => setUpcoming(data.results))
+        .catch((err) => console.error(err))
+    );
+  };
+
+  console.log(upcoming);
+
   // Settings for the react-slick carousel
   const settings = {
+    cssEase: "linear",
     infinite: true,
-    speed: 500,
+    speed: 250,
     slidesToShow: 4, // Number of slides to show at a time
     slidesToScroll: 4, // Number of slides to scroll on each change
   };
@@ -112,6 +134,21 @@ function Trending() {
                 alt={show.title}
               />
               <p>{show.title}</p>
+            </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className="upcoming-container">
+        <h1>Upcoming movies</h1>
+        <Slider {...settings}>
+          {upcoming.map((movie) => (
+            <div key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
             </div>
           ))}
         </Slider>

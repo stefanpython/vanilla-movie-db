@@ -37,6 +37,7 @@
   width: 50%;
   padding: 8px;
   border-radius: 15px;
+  border: none;
 }
 
 /* Styles for the button on the right */
