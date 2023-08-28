@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 function Trending() {
   const [trending, setTrending] = useState([]);
@@ -96,8 +97,6 @@ function Trending() {
     );
   };
 
-  console.log(upcoming);
-
   // Settings for the react-slick carousel
   const settings = {
     cssEase: "linear",
@@ -114,11 +113,13 @@ function Trending() {
         <Slider {...settings}>
           {trending.map((movie) => (
             <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <p>{movie.title}</p>
+              <Link to={`/${movie.media_type}/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <p>{movie.title}</p>
+              </Link>
             </div>
           ))}
         </Slider>
@@ -129,11 +130,13 @@ function Trending() {
         <Slider {...settings}>
           {tvSeries.map((show) => (
             <div key={show.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                alt={show.title}
-              />
-              <p>{show.title}</p>
+              <Link to={`/${show.media_type}/${show.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                  alt={show.title}
+                />
+                <p>{show.title}</p>
+              </Link>
             </div>
           ))}
         </Slider>
@@ -144,11 +147,13 @@ function Trending() {
         <Slider {...settings}>
           {upcoming.map((movie) => (
             <div key={movie.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <p>{movie.title}</p>
+              <Link to={`/${movie.media_type}/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <p>{movie.title}</p>
+              </Link>
             </div>
           ))}
         </Slider>
