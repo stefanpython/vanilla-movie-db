@@ -1,0 +1,33 @@
+.movie-image {
+  max-height: 30em;
+}
+
+li {
+  list-style: none;
+}
+
+.overview-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.overview {
+  text-align: initial;
+  padding: 0 220px;
+  margin-top: -10px;
+}
+
+@media (max-width: 768px) {
+  .overview {
+    padding: 15px;
+  }
+}
+
+.tagline {
+  font-style: italic;
+  color: grey;
+}
+
+body {
+  background-color: aliceblue;
+}

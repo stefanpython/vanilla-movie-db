@@ -12,7 +12,10 @@ function SingleMoviePage() {
       fetchMediaDetails("movie", id);
     } else if (type === "tv") {
       fetchMediaDetails("tv", id);
+    } else {
+      fetchMediaDetails("movie", id);
     }
+    // eslint-disable-next-line
   }, [id, type]);
 
   // Define options parameter for fetch
@@ -46,17 +49,42 @@ function SingleMoviePage() {
       });
   };
 
+  const genreNames = media?.genres?.map((genre) => genre.name).join(", ");
+
   return (
     <div className="singleMovie-container">
-      {media && (
-        <div>
+      {media ? (
+        <div className="singleMovie-content">
           <img
+            className="movie-image"
             src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
             alt={media.title || media.name}
           />
           <h2>{media.title || media.name}</h2>
+
+          <p className="tagline">{media.tagline}</p>
+
+          <br />
+
+          <p>{Math.round(media.vote_average)}0% User Score</p>
+
           <p>Release Date: {media.release_date || media.first_air_date}</p>
+
+          {genreNames && (
+            <p>
+              Genres: {genreNames}
+              {" - "}
+              {`${Math.floor(media.runtime / 60)}h ${media.runtime % 60}min`}
+            </p>
+          )}
+
+          <div className="overview-container">
+            <h3>Overview</h3>
+            <p className="overview">{media.overview}</p>
+          </div>
         </div>
+      ) : (
+        <p>Loading...</p>
       )}
     </div>
   );
