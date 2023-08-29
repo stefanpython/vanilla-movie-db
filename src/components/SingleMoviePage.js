@@ -5,16 +5,18 @@ import "./SingleMoviePage.css";
 function SingleMoviePage() {
   const [media, setMedia] = useState(null); // Use a single state for both movies and TV shows
   const { id, type } = useParams();
+  const [people, setPeople] = useState(null);
 
   useEffect(() => {
     // Fetch movie or TV show details when the component mounts
-    if (type === "movie") {
-      fetchMediaDetails("movie", id);
-    } else if (type === "tv") {
+    if (type === "tv") {
       fetchMediaDetails("tv", id);
+      fetchPeopleDetails("tv", id);
     } else {
       fetchMediaDetails("movie", id);
+      fetchPeopleDetails("movie", id);
     }
+
     // eslint-disable-next-line
   }, [id, type]);
 
@@ -26,6 +28,27 @@ function SingleMoviePage() {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
     },
+  };
+
+  // Fetch People
+  const fetchPeopleDetails = (mediaType, mediaId) => {
+    fetch(
+      `https://api.themoviedb.org/3/${mediaType}/${mediaId}/credits?language=en-US`,
+      options
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Response failed");
+        }
+      })
+      .then((data) => {
+        setPeople(data);
+      })
+      .catch((err) => {
+        console.log(`Error retrieving info:`, err);
+      });
   };
 
   // Fetch movie or TV show details based on type
@@ -48,6 +71,8 @@ function SingleMoviePage() {
         console.log(`Error retrieving ${mediaType} info:`, err);
       });
   };
+
+  console.log(people);
 
   const genreNames = media?.genres?.map((genre) => genre.name).join(", ");
 
@@ -73,8 +98,10 @@ function SingleMoviePage() {
           {genreNames && (
             <p>
               Genres: {genreNames}
-              {" - "}
-              {`${Math.floor(media.runtime / 60)}h ${media.runtime % 60}min`}
+              {media.runtime &&
+                ` - ${Math.floor(media.runtime / 60)}h ${
+                  media.runtime % 60
+                }min`}
             </p>
           )}
 
