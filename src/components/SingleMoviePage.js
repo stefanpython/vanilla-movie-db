@@ -44,7 +44,7 @@ function SingleMoviePage() {
         }
       })
       .then((data) => {
-        setPeople(data);
+        setPeople(data.cast);
       })
       .catch((err) => {
         console.log(`Error retrieving info:`, err);
@@ -105,9 +105,27 @@ function SingleMoviePage() {
             </p>
           )}
 
+          <hr />
+
           <div className="overview-container">
             <h3>Overview</h3>
             <p className="overview">{media.overview}</p>
+          </div>
+
+          <h2>Top Billed Cast</h2>
+          <div className="crew-container">
+            {people &&
+              people.slice(0, 10).map((actor, index) => (
+                <div className="crew-details" key={index}>
+                  <img
+                    className="crew-image"
+                    src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                    alt="actor"
+                  />
+                  <p className="actor-name">{actor.name}</p>
+                  <p>{actor.character}</p>
+                </div>
+              ))}
           </div>
         </div>
       ) : (

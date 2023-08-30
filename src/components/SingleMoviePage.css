@@ -31,3 +31,23 @@ li {
 body {
   background-color: aliceblue;
 }
+
+.crew-image {
+  height: 200px;
+}
+
+.crew-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 40px;
+  margin-left: 13%;
+  margin-right: 14%;
+}
+
+.actor-name {
+  font-weight: 600;
+}
+
+hr {
+  max-width: 1000px;
+}
