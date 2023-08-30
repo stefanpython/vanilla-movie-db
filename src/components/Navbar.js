@@ -1,8 +1,19 @@
-import "./Navbar.css";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [showMoviesDropdown, setShowMoviesDropdown] = useState(false);
+  const [showTvShowsDropdown, setShowTvShowsDropdown] = useState(false);
+
+  const toggleMoviesDropdown = () => {
+    setShowMoviesDropdown(!showMoviesDropdown);
+  };
+
+  const toggleTvShowsDropdown = () => {
+    setShowTvShowsDropdown(!showTvShowsDropdown);
+  };
 
   return (
     <div className="navbar">
@@ -18,8 +29,32 @@ function Navbar() {
         />
       </div>
       <div className="navbar-right">
-        <button>Movies</button>
-        <button>TV Shows</button>
+        <div
+          className="dropdown left-btn"
+          onMouseEnter={toggleMoviesDropdown}
+          onMouseLeave={toggleMoviesDropdown}
+        >
+          <button className="movies-btn">Movies</button>
+          {showMoviesDropdown && (
+            <div className="dropdown-content">
+              <button>Popular</button>
+              <button>Top Rated</button>
+            </div>
+          )}
+        </div>
+        <div
+          className="dropdown right-btn"
+          onMouseEnter={toggleTvShowsDropdown}
+          onMouseLeave={toggleTvShowsDropdown}
+        >
+          <button className="shows-btn">TV Shows</button>
+          {showTvShowsDropdown && (
+            <div className="dropdown-content">
+              <button>Popular</button>
+              <button>Top Rated</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
