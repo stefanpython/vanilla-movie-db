@@ -1,0 +1,17 @@
+.movies-image {
+  height: 250px;
+  border-radius: 10px;
+}
+
+.popular-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  padding: 0 10em;
+}
+
+@media (max-width: 768px) {
+  .popular-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 0;
+  }
+}

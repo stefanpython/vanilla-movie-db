@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -37,8 +38,12 @@ function Navbar() {
           <button className="movies-btn">Movies</button>
           {showMoviesDropdown && (
             <div className="dropdown-content">
-              <button>Popular</button>
-              <button>Top Rated</button>
+              <Link to="/movies/popular">
+                <button>Popular</button>
+              </Link>
+              <Link to="/movies/top-rated">
+                <button>Top Rated</button>
+              </Link>
             </div>
           )}
         </div>

@@ -72,8 +72,6 @@ function SingleMoviePage() {
       });
   };
 
-  console.log(people);
-
   const genreNames = media?.genres?.map((genre) => genre.name).join(", ");
 
   return (

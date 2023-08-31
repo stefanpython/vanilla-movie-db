@@ -30,7 +30,7 @@ function Trending() {
   // FETCH LATEST MOVIES
   const fetchTrending = () => {
     // Fetch more pages at once using promise.all
-    const totalPages = 3;
+    const totalPages = 4;
     const requests = [];
 
     for (let page = 1; page <= totalPages; page++) {
@@ -57,7 +57,7 @@ function Trending() {
   // FETCH LATEST TV SHOWS
   const fetchTvSeries = () => {
     // Fetch more pages at once using promise.all
-    const totalPages = 3;
+    const totalPages = 4;
     const requests = [];
 
     for (let page = 1; page <= totalPages; page++) {
@@ -83,18 +83,29 @@ function Trending() {
 
   //FETCH POPULATE MOVIES AND TV SHOWS
   const fetchUpcoming = () => {
+    const totalPages = 4;
     const requests = [];
 
     // fetch popular movies
-    requests.push(
-      fetch(
-        `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
-        options
-      )
-        .then((response) => response.json())
-        .then((data) => setUpcoming(data.results))
-        .catch((err) => console.error(err))
-    );
+    for (let page = 1; page <= totalPages; page++) {
+      requests.push(
+        fetch(
+          `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => data.results)
+      );
+    }
+
+    // Use Promise.all to wait for all requests to complete
+    Promise.all(requests)
+      .then((results) => {
+        // Combine the results from all pages into a single array
+        const combinedResults = results.flat();
+        setUpcoming(combinedResults);
+      })
+      .catch((err) => console.error(err));
   };
 
   // Settings for the react-slick carousel
