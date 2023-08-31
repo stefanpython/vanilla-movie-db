@@ -1,14 +1,16 @@
 import "./Movies.css";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Movies({ category }) {
   const [popular, setPopular] = useState(null);
   const [topRated, setTopRated] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchPopular();
     // eslint-disable-next-line
-  }, []);
+  }, [totalPages]);
 
   // Define opitons parameter for fetch
   const options = {
@@ -22,7 +24,6 @@ function Movies({ category }) {
 
   const fetchPopular = () => {
     // Fetch more pages at once using promise.all
-    const totalPages = 1;
     const requests = [];
 
     for (let page = 1; page <= totalPages; page++) {
@@ -46,28 +47,35 @@ function Movies({ category }) {
       .catch((err) => console.error(err));
   };
 
-  console.log(popular);
+  const handleLoadMore = () => {
+    setTotalPages((prevTotalPages) => prevTotalPages + 1);
+  };
 
   return (
     <div>
       <h1>{category === "popular" ? "Popular Movies" : "Top Rated Movies"}</h1>
       <div className="popular-container">
-        {popular.map((movie) => (
-          <div key={movie.id}>
-            <img
-              className="movies-image"
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
+        {popular &&
+          popular.map((movie) => (
+            <div key={movie.id}>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  className="movies-image"
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <p>{movie.title}</p>
 
-            <p>{movie.vote_average} User Score</p>
+                <p>{movie.vote_average} User Score</p>
 
-            <p>{movie.release_date || movie.first_air_date}</p>
-          </div>
-        ))}
+                <p>{movie.release_date || movie.first_air_date}</p>
+              </Link>
+            </div>
+          ))}
       </div>
-      <button className="loadmore-btn">Load more</button>
+      <button onClick={handleLoadMore} className="loadmore-btn">
+        Load more
+      </button>
     </div>
   );
 }
