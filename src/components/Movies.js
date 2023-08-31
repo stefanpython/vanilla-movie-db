@@ -67,6 +67,7 @@ function Movies({ category }) {
           </div>
         ))}
       </div>
+      <button className="loadmore-btn">Load more</button>
     </div>
   );
 }
