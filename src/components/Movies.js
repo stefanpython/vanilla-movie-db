@@ -58,7 +58,7 @@ function Movies({ category }) {
         {popular &&
           popular.map((movie) => (
             <div key={movie.id}>
-              <Link to={`/movie/${movie.id}`}>
+              <Link className="link" to={`/movie/${movie.id}`}>
                 <img
                   className="movies-image"
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -81,3 +81,5 @@ function Movies({ category }) {
 }
 
 export default Movies;
+
+// TODO: IMPLEMENT FETCH AND DISPLAY TOP-RATED MOVIES

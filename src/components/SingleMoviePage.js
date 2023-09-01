@@ -107,7 +107,10 @@ function SingleMoviePage() {
 
           <div className="overview-container">
             <h3>Overview</h3>
-            <p className="overview">{media.overview}</p>
+
+            <div className="overview-text">
+              <p className="overview">{media.overview}</p>
+            </div>
           </div>
 
           <h2>Top Billed Cast</h2>

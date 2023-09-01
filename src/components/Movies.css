@@ -27,3 +27,16 @@
   color: white;
   border-radius: 7px;
 }
+
+.loadmore-btn:hover {
+  cursor: pointer;
+  background-color: #2b9fcc;
+}
+
+.popular-container p {
+  color: black;
+}
+
+.link {
+  text-decoration: none !important;
+}
