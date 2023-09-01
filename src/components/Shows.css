@@ -1,0 +1,42 @@
+.shows-image {
+  height: 250px;
+  border-radius: 10px;
+}
+
+.popular-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  padding: 0 10em;
+}
+
+@media (max-width: 768px) {
+  .popular-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 0;
+  }
+}
+
+.loadmore-btn {
+  width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #31a9d8;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  border-radius: 7px;
+}
+
+.loadmore-btn:hover {
+  cursor: pointer;
+  background-color: #2b9fcc;
+}
+
+.popular-container p {
+  color: black;
+}
+
+.link {
+  text-decoration: none !important;
+}

@@ -55,8 +55,12 @@ function Navbar() {
           <button className="shows-btn">TV Shows</button>
           {showTvShowsDropdown && (
             <div className="dropdown-content">
-              <button>Popular</button>
-              <button>Top Rated</button>
+              <Link to="/shows/popular">
+                <button>Popular</button>
+              </Link>
+              <Link to="/shows/top-rated">
+                <button>Top Rated</button>
+              </Link>
             </div>
           )}
         </div>

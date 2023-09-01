@@ -5,6 +5,7 @@ import Welcome from "./components/Welcome";
 import SingleMoviePage from "./components/SingleMoviePage";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Movies from "./components/Movies";
+import Shows from "./components/Shows";
 
 function App() {
   return (
@@ -23,6 +24,12 @@ function App() {
           <Route
             path="/movies/top-rated"
             element={<Movies category="top-rated" />}
+          />
+
+          <Route path="/shows/popular" element={<Shows category="popular" />} />
+          <Route
+            path="/shows/top-rated"
+            element={<Shows category="top-rated" />}
           />
         </Routes>
       </HashRouter>

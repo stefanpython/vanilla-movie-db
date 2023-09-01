@@ -1,8 +1,8 @@
-import "./Movies.css";
-import { useEffect, useState } from "react";
+import "./Shows.css";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Movies({ category }) {
+function Shows({ category }) {
   const [popular, setPopular] = useState(null);
   const [topRated, setTopRated] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
@@ -33,7 +33,7 @@ function Movies({ category }) {
     for (let page = 1; page <= totalPages; page++) {
       requests.push(
         fetch(
-          `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
+          `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${page}`,
           options
         )
           .then((response) => response.json())
@@ -58,7 +58,7 @@ function Movies({ category }) {
     for (let page = 1; page <= totalPages; page++) {
       requests.push(
         fetch(
-          `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
+          `https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=${page}`,
           options
         )
           .then((response) => response.json())
@@ -81,23 +81,23 @@ function Movies({ category }) {
 
   return (
     <div>
-      <h1>{category === "popular" ? "Popular Movies" : "Top Rated Movies"}</h1>
+      <h1>{category === "popular" ? "Popular Shows" : "Top Rated Shows"}</h1>
       {category === "popular" ? (
         <div className="popular-container">
           {popular &&
-            popular.map((movie) => (
-              <div key={movie.id}>
-                <Link className="link" to={`/movie/${movie.id}`}>
+            popular.map((show) => (
+              <div key={show.id}>
+                <Link className="link" to={`/tv/${show.id}`}>
                   <img
-                    className="movies-image"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                    className="shows-image"
+                    src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                    alt={show.title}
                   />
-                  <p>{movie.title}</p>
+                  <p>{show.title}</p>
 
-                  <p>{movie.vote_average} User Score</p>
+                  <p>{show.vote_average} User Score</p>
 
-                  <p>{movie.release_date || movie.first_air_date}</p>
+                  <p>{show.release_date || show.first_air_date}</p>
                 </Link>
               </div>
             ))}
@@ -105,19 +105,19 @@ function Movies({ category }) {
       ) : (
         <div className="popular-container">
           {topRated &&
-            topRated.map((movie) => (
-              <div key={movie.id}>
-                <Link className="link" to={`/movie/${movie.id}`}>
+            topRated.map((show) => (
+              <div key={show.id}>
+                <Link className="link" to={`/tv/${show.id}`}>
                   <img
-                    className="movies-image"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                    className="shows-image"
+                    src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                    alt={show.title}
                   />
-                  <p>{movie.title}</p>
+                  <p>{show.title}</p>
 
-                  <p>{movie.vote_average} User Score</p>
+                  <p>{show.vote_average} User Score</p>
 
-                  <p>{movie.release_date || movie.first_air_date}</p>
+                  <p>{show.release_date || show.first_air_date}</p>
                 </Link>
               </div>
             ))}
@@ -130,4 +130,4 @@ function Movies({ category }) {
   );
 }
 
-export default Movies;
+export default Shows;
