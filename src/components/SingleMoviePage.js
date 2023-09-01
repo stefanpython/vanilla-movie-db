@@ -114,6 +114,7 @@ function SingleMoviePage() {
           </div>
 
           <h2>Top Billed Cast</h2>
+
           <div className="crew-container">
             {people &&
               people.slice(0, 10).map((actor, index) => (

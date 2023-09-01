@@ -8,9 +8,13 @@ function Movies({ category }) {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    fetchPopular();
+    if (category === "popular") {
+      fetchPopular();
+    } else {
+      fetchTopRated();
+    }
     // eslint-disable-next-line
-  }, [totalPages]);
+  }, [totalPages, popular, topRated]);
 
   // Define opitons parameter for fetch
   const options = {
@@ -47,6 +51,30 @@ function Movies({ category }) {
       .catch((err) => console.error(err));
   };
 
+  const fetchTopRated = () => {
+    // Fetch more pages at once using promise.all
+    const requests = [];
+
+    for (let page = 1; page <= totalPages; page++) {
+      requests.push(
+        fetch(
+          `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => data.results)
+      );
+    }
+
+    Promise.all(requests)
+      .then((results) => {
+        // Combine results from all pages into a single array
+        const combinedResults = results.flat();
+        setTopRated(combinedResults);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const handleLoadMore = () => {
     setTotalPages((prevTotalPages) => prevTotalPages + 1);
   };
@@ -54,25 +82,47 @@ function Movies({ category }) {
   return (
     <div>
       <h1>{category === "popular" ? "Popular Movies" : "Top Rated Movies"}</h1>
-      <div className="popular-container">
-        {popular &&
-          popular.map((movie) => (
-            <div key={movie.id}>
-              <Link className="link" to={`/movie/${movie.id}`}>
-                <img
-                  className="movies-image"
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <p>{movie.title}</p>
+      {category === "popular" ? (
+        <div className="popular-container">
+          {popular &&
+            popular.map((movie) => (
+              <div key={movie.id}>
+                <Link className="link" to={`/movie/${movie.id}`}>
+                  <img
+                    className="movies-image"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                  <p>{movie.title}</p>
 
-                <p>{movie.vote_average} User Score</p>
+                  <p>{movie.vote_average} User Score</p>
 
-                <p>{movie.release_date || movie.first_air_date}</p>
-              </Link>
-            </div>
-          ))}
-      </div>
+                  <p>{movie.release_date || movie.first_air_date}</p>
+                </Link>
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div className="popular-container">
+          {topRated &&
+            topRated.map((movie) => (
+              <div key={movie.id}>
+                <Link className="link" to={`/movie/${movie.id}`}>
+                  <img
+                    className="movies-image"
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                  <p>{movie.title}</p>
+
+                  <p>{movie.vote_average} User Score</p>
+
+                  <p>{movie.release_date || movie.first_air_date}</p>
+                </Link>
+              </div>
+            ))}
+        </div>
+      )}
       <button onClick={handleLoadMore} className="loadmore-btn">
         Load more
       </button>
