@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# VMDB - Vanilla Movie Database
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+VMDB is a web application that allows users to discover trending movies and TV shows, search for their favorite titles, and access details about movies and TV shows in real-time using react and API`s from [TMDB](https://www.themoviedb.org/).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- View trending movies and TV shows.
+- Search for movies and TV shows by title.
+- View detailed information about a specific movie or TV show.
+- Explore popular and top-rated movies and TV shows.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+1. Create a TMBD account to get api_key or bearer token:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   https://www.themoviedb.org/)
+   ```
 
-### `npm run build`
+2. Clone the repository:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```
+    git clone https://github.com/your-username/vmdb.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Navigate to the project directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
+    cd vmdb
+   ```
 
-### `npm run eject`
+4. Install project dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```
+   npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. Create a .env file in the root of the project and add your API key as follows:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```
+    REACT_APP_BEARER_TOKEN=YOUR_TOKEN_KEY
+   ```
 
-## Learn More
+6. Start the development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```
+    npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+7. Open your web browser and access the application at`` \`http://localhost:3000\`. ``
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Home Page: Displays trending movies and TV shows.
+- Search: Use the search bar to search for movies and TV shows by title.
+- Details Page: Click on a movie or TV show to view detailed information.
+- Movies and TV Shows: Explore popular and top-rated movies and TV shows.
 
-### Analyzing the Bundle Size
+## API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project integrates with The Movie Database (TMDb) API to fetch movie and TV show data. You'll need to obtain an API key from TMDb and add it to the .env file as mentioned in the installation steps.
 
-### Making a Progressive Web App
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+We welcome contributions from the community. If you'd like to contribute to this project, please follow these steps:
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the project on GitHub.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your changes to your fork.
+5. Create a pull request to submit your changes for review.
