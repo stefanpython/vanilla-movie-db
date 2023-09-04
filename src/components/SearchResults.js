@@ -6,6 +6,8 @@ function SearchResults() {
   const { query } = useParams();
   const [searchResults, setSearchResults] = useState([]);
 
+  const bearerToken = process.env.REACT_APP_BEARER_TOKEN;
+
   useEffect(() => {
     // Fetch search results based on the query
     fetchSearchResults(query);
@@ -17,8 +19,7 @@ function SearchResults() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
+        Authorization: `Bearer ${bearerToken}`,
       },
     };
 
