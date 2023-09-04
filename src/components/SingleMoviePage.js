@@ -7,6 +7,8 @@ function SingleMoviePage() {
   const { id, type } = useParams();
   const [people, setPeople] = useState(null);
 
+  const bearerToken = process.env.REACT_APP_BEARER_TOKEN;
+
   useEffect(() => {
     // Fetch movie or TV show details when the component mounts
     if (type === "tv") {
@@ -25,8 +27,7 @@ function SingleMoviePage() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOWVhMGU2M2QyNjdmMjViMmEyNTk2YmIxMjkwMDk0YSIsInN1YiI6IjY0ZTRjMzc2MDZmOTg0MDBjYTUzNzk5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hsOzRn0KzJFvoR1SY7EEZTi1oKw6Wry41LZYu5B82N8",
+      Authorization: `Bearer ${bearerToken}`,
     },
   };
 

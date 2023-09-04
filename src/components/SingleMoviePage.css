@@ -56,3 +56,7 @@ body {
 hr {
   max-width: 1000px;
 }
+
+h2 {
+  font-family: "Dosis", sans-serif;
+}

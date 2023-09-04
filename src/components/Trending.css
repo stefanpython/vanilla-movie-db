@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&display=swap");
+
 body,
 html {
   margin: 0;
@@ -53,4 +55,8 @@ html {
 .slick-arrow {
   background-color: #acb4bd !important;
   border-radius: 20px;
+}
+
+h1 {
+  font-family: "Dosis", sans-serif;
 }
