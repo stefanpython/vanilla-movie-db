@@ -12,7 +12,7 @@ function Welcome() {
           </h2>
         </div>
       </div>
-      <img className="welcome-image" src="/welcome1.jpg" alt="theatre" />
+      <img className="welcome-image" src="./welcome1.jpg" alt="theatre" />
     </div>
   );
 }
