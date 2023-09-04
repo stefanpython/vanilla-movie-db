@@ -7,6 +7,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [showMoviesDropdown, setShowMoviesDropdown] = useState(false);
   const [showTvShowsDropdown, setShowTvShowsDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleMoviesDropdown = () => {
     setShowMoviesDropdown(!showMoviesDropdown);
@@ -27,7 +28,25 @@ function Navbar() {
           type="text"
           className="search-bar"
           placeholder="Search for movie..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && searchQuery.trim() !== "") {
+              navigate(`/search/${searchQuery}`);
+              setSearchQuery("");
+            }
+          }}
         />
+        <button
+          onClick={() => {
+            if (searchQuery.trim() !== "") {
+              navigate(`/search/${searchQuery}`);
+              setSearchQuery("");
+            }
+          }}
+        >
+          Search
+        </button>
       </div>
       <div className="navbar-right">
         <div

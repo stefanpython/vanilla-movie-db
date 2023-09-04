@@ -6,6 +6,7 @@ import SingleMoviePage from "./components/SingleMoviePage";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Movies from "./components/Movies";
 import Shows from "./components/Shows";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             path="/shows/top-rated"
             element={<Shows category="top-rated" />}
           />
+
+          <Route path="/search/:query" element={<SearchResults />} />
         </Routes>
       </HashRouter>
     </div>

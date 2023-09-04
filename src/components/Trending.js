@@ -9,6 +9,7 @@ function Trending() {
   const [trending, setTrending] = useState([]);
   const [tvSeries, setTvSeries] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchTrending();
@@ -51,7 +52,8 @@ function Trending() {
         const combinedResults = results.flat();
         setTrending(combinedResults);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   };
 
   // FETCH LATEST TV SHOWS
@@ -78,7 +80,8 @@ function Trending() {
         const combinedResults = results.flat();
         setTvSeries(combinedResults);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   };
 
   //FETCH POPULATE MOVIES AND TV SHOWS
@@ -105,7 +108,8 @@ function Trending() {
         const combinedResults = results.flat();
         setUpcoming(combinedResults);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   };
 
   // Settings for the react-slick carousel
@@ -116,6 +120,11 @@ function Trending() {
     slidesToShow: 4, // Number of slides to show at a time
     slidesToScroll: 4, // Number of slides to scroll on each change
   };
+
+  // Check if loading, and display a loading indicator if so
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -146,7 +155,7 @@ function Trending() {
                   src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                   alt={show.title}
                 />
-                <p>{show.title}</p>
+                <p>{show.name}</p>
               </Link>
             </div>
           ))}
