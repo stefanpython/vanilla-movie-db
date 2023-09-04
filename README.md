@@ -2,6 +2,8 @@
 
 VMDB is a web application that allows users to discover trending movies and TV shows, search for their favorite titles, and access details about movies and TV shows in real-time using react and API`s from [TMDB](https://www.themoviedb.org/).
 
+Live demo [HERE](https://stefanpython.github.io/vanilla-movie-db/)
+
 ## Features
 
 - View trending movies and TV shows.
