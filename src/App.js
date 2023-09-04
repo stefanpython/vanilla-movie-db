@@ -36,6 +36,18 @@ function App() {
           <Route path="/search/:query" element={<SearchResults />} />
         </Routes>
       </HashRouter>
+
+      {/* Footer */}
+      <footer>
+        <a href="https://github.com/stefanpython">
+          <span>Copyright &copy; 2023 stefanpython </span>
+          <img
+            className="git-logo"
+            src="https://c.tenor.com/A15H8E1VUh8AAAAM/github-cat.gif"
+            alt="git icon"
+          />
+        </a>
+      </footer>
     </div>
   );
 }

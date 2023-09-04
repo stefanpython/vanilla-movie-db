@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: flex-end;
   flex: 1;
+  z-index: 9999;
 }
 
 /* Styles for the title text */
@@ -66,6 +67,10 @@
   height: 50px;
 }
 
+.navbar-logo:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .navbar-title {
     font-size: 20px;
@@ -106,4 +111,32 @@
 .left-btn {
   margin-left: -40px;
   margin-right: 4px;
+}
+
+.search-btn {
+  margin-left: -30px;
+  border: 1px solid grey;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: white;
+}
+
+.movies-btn,
+.shows-btn {
+  border: none;
+  color: white;
+  background-color: #3f535e;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.dropdown-content button {
+  border: none;
+  border-bottom: 1px solid black;
+  width: 100%;
+  text-decoration: none;
+}
+
+.dropdown-content button:hover {
+  background-color: rgb(224, 224, 224);
 }

@@ -20,7 +20,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar-left" onClick={() => navigate("/")}>
-        <img className="navbar-logo" src="./logo.png" alt="logo" />
+        <img className="navbar-logo" src="./cinema.png" alt="logo" />
         <span className="navbar-title">VMDB</span>
       </div>
       <div className="navbar-middle">
@@ -38,6 +38,7 @@ function Navbar() {
           }}
         />
         <button
+          className="search-btn"
           onClick={() => {
             if (searchQuery.trim() !== "") {
               navigate(`/search/${searchQuery}`);
@@ -45,7 +46,7 @@ function Navbar() {
             }
           }}
         >
-          Search
+          &#128269;
         </button>
       </div>
       <div className="navbar-right">
